@@ -1,0 +1,25 @@
+{
+  "name": "cybersmart-users-api",
+  "version": "1.0.0",
+  "description": "An API for the management of Users in the CyberSmart system",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/UniversityGroup/CyberSmart-Users-API.git"
+  },
+  "author": "The Slackers",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/UniversityGroup/CyberSmart-Users-API/issues"
+  },
+  "homepage": "https://github.com/UniversityGroup/CyberSmart-Users-API#readme",
+  "dependencies": {
+    "bluebird": "^3.5.1",
+    "cors": "^2.8.4",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.11"
+  }
+}
