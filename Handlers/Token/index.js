@@ -22,7 +22,7 @@ module.exports = class Token {
     }
 
     EncodeUser(user) {
-        return jwt.encode(user, config.secret);
+        return 'JWT ' + jwt.encode(user, config.secret);
     }
 
     DecodeJWT(token) {

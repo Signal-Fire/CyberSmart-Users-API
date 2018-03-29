@@ -1,6 +1,6 @@
 /* jshint esversion : 6 */
-var User = require('../../Models/user');
-var bcrypt = require('bcryptjs');
+var User = require('../../Models/user'),
+    bcrypt = require('bcryptjs');
 
 module.exports = class Registration {
     constructor() {
