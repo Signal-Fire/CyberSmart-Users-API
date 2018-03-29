@@ -60,7 +60,7 @@ UserSchema.pre('save', function (next) {
     }
 });
 
-UserSchema.pre('findOneAndUpdate', function (next) {
+/*UserSchema.pre('findOneAndUpdate', function (next) {
     var passUpdated = this.getUpdate().password !== "";
 
     if (!passUpdated) {
@@ -81,6 +81,6 @@ UserSchema.pre('findOneAndUpdate', function (next) {
     }).catch(err => {  
         console.error(err);
     });
-});
+});*/
 
 module.exports = connection.model('User', UserSchema);
