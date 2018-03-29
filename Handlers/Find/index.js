@@ -1,8 +1,7 @@
 /* jshint esversion: 6 */
 var jwt = require('jwt-simple'),
     Tokenizer = new(require('../Token'))(),
-    User = require('../../Models/user'),
-    config = require('../../Configuration');
+    User = require('../../Models/user');
 
 module.exports = class Find {
     constructor() {
