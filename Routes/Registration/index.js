@@ -1,14 +1,15 @@
 /* jshint esversion: 6 */
-var route = require('express').Router();
-var Registrar = new(require('../../Handlers/Registration'))();
+var route = require('express').Router(),
+    Tokenizer = new(require('../../Handlers/Token'))(),
+    Registrar = new(require('../../Handlers/Registration'))();
 
-route.post('/', function(req, res) {
+route.post('/', function(req, res) {  
     if (!req.body)
-        res.status(400).send("{ error : no user to register }");
+        return res.status(400).send({ 'error' : error });
     Registrar.Register(req.body).then(newUser => {
-        res.status(201).send("{ success : user created }");
+        return res.status(201).send({ 'token' : Tokenizer.EncodeUser(newUser) });
     }).catch(error => {
-        res.status(400).send("{ error : " + error + " }");
+        return res.status(400).send({ 'error' : error });
     });
 });
 

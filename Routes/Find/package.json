@@ -1,0 +1,6 @@
+{
+    "name" : "find-user-routes",
+    "version" : "1.0.0",
+    "author" : "Henry Pye",
+    "main" : "index.js"
+}
