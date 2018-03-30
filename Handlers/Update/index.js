@@ -1,5 +1,6 @@
 /* jshint esversion : 6 */
 var Tokenizer = new(require('../Token'))(),
+    Logger = new(require('../../Handlers/Logger'))(),
     User = require('../../Models/user'),
     bcrypt = require('bcryptjs');
 
@@ -18,7 +19,9 @@ module.exports = class Update {
                         User.findOneAndUpdate(user, update, function(err, result) {
                             if (err || result === null)
                                 return reject("Unable to find or update user");
-                                
+
+                            Logger.Create(user.username + " updated", user.username);
+                            
                             return resolve(Tokenizer.EncodeUser(update));
                         });
                     });
