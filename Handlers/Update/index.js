@@ -1,6 +1,7 @@
 /* jshint esversion : 6 */
 var Tokenizer = new(require('../Token'))(),
     Logger = new(require('../../Handlers/Logger'))(),
+    Finder = new(require('../../Handlers/Find'))(),
     User = require('../../Models/user'),
     bcrypt = require('bcryptjs');
 

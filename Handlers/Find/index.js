@@ -27,25 +27,4 @@ module.exports = class Find {
             });
         });
     }
-
-    FindByJWTAndUpdate(headers, update) {
-        return new Promise(function(resolve, reject) {
-            Tokenizer.GetTokenFrom(headers).then(jwt => {
-                var user = Tokenizer.DecodeJWT(jwt);
-                bcrypt.genSalt(10).then(salt => {
-                    bcrypt.hash(update.password, salt).then(hash => {
-                        User.findOneAndUpdate(user, update, function(err, user) {
-                            if (err || user === null)
-                                return reject("Unable to find or update user");
-    
-                            return resolve(Tokenizer.EncodeUser(user));
-                        });
-                    });
-                });
-            }).catch(error => {
-                return reject(error);
-            });
-            
-        });
-    }
 };
