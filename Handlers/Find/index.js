@@ -8,6 +8,26 @@ module.exports = class Find {
 
     }
 
+    FindDetailsFromJWT(headers) {
+        return new Promise(function(resolve, reject) {
+            Tokenizer.GetTokenFrom(headers).then(jwt => {
+                var query = { username : Tokenizer.DecodeJWT(jwt).username }
+                User.findOne(query, function(err, user) {
+                    if (err || user === null)
+                        return reject("Unable to find user from ID");
+
+                    var returnModel = {
+                        'id' : user._id,
+                        'username' : user.username,
+                        'full_name' : user.first_name + ' ' + user.last_name
+                    }
+                    
+                    return resolve(returnModel);
+                });
+            });
+        });
+    }
+
     FindByJWT(headers) {
         return new Promise(function(resolve, reject) {
             Tokenizer.GetTokenFrom(headers).then(jwt => {

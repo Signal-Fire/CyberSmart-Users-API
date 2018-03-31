@@ -3,14 +3,13 @@ var express = require('express'),
     app = express(),
     cors = require('cors'),
     passport = require('passport'),
+    config = require('./Configuration'),
     compression = require('compression'),
     bodyParser = require('body-parser'),
     Accessor = require('./Routes/Login'),
     Updater = require('./Routes/Update'),
     Registration = require('./Routes/Registration'),
     Finder = require('./Routes/Find');
-
-const port = 8080;
 
 app.use(cors());
 
@@ -28,6 +27,6 @@ app.use('/find', Finder);
 app.use('/update', Updater);
 app.use('/login', Accessor);
 
-app.listen(port, () => {
-    console.log('Sailed through the Iron Islands, landing at ' + port);
+app.listen(config.port, () => {
+    console.log('Sailed through the Iron Islands, landing at ' + config.port);
 });

@@ -15,4 +15,12 @@ route.get('/user', jwtAuth, function(req, res) {
     });
 });
 
+route.get('/details', jwtAuth, function(req, res) {
+    Finder.FindDetailsFromJWT(req.headers).then(user => {
+        return res.status(200).send(user);
+    }).catch(error => {
+        return res.status(400).send({ "error " : error });
+    });
+});
+
 module.exports = route;
