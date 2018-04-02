@@ -1,7 +1,6 @@
 /* jshint esversion : 6 */
 var User = require('../../Models/user'),
-    bcrypt = require('bcryptjs'),
-    Logger = new(require('../Logger'))();
+    bcrypt = require('bcryptjs');
 
 module.exports = class Registration {
     constructor() {
@@ -15,8 +14,6 @@ module.exports = class Registration {
             newUser.save(function(err, result) {
                 if (err || result === null)
                     return reject("Unable to save user");
-                
-                Logger.Create(result.username + ' registered as a new user!', result.username);
                 
                 return resolve(result);
             });

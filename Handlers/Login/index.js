@@ -1,8 +1,6 @@
 /* jshint esversion : 6*/
 var bcrypt = require('bcryptjs'),
-    config = require('../../Configuration'),
     User = require('../../Models/user'),
-    Logger = new(require('../Logger'))(),
     Tokenizer = new(require('../Token'))();
 
 module.exports = class Login {
@@ -20,10 +18,8 @@ module.exports = class Login {
                     bcrypt.compare( user.password, result.password)
                         .then(res => {
                             if (res) {
-                                Logger.Create(user.username + " logged in", "System");
-
                                 result.password = '';
-                                
+
                                 return resolve(Tokenizer.EncodeUser(result));
                             } else {
                                 return reject("Incorrect password");
