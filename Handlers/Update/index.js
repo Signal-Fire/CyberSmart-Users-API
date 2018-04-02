@@ -21,7 +21,7 @@ module.exports = class Update {
                             if (err || result === null)
                                 return reject("Unable to find or update user");
 
-                            Logger.Create(update.username + " updated their details", update.username);
+                            Logger.Create(update.username + " updated their details!", update.username);
 
                             return resolve(Tokenizer.EncodeUser(update));
                         });

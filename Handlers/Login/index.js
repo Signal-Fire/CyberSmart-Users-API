@@ -22,6 +22,8 @@ module.exports = class Login {
                             if (res) {
                                 Logger.Create(user.username + " logged in", "System");
 
+                                result.password = '';
+                                
                                 return resolve(Tokenizer.EncodeUser(result));
                             } else {
                                 return reject("Incorrect password");

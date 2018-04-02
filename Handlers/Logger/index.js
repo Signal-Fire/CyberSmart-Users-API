@@ -10,7 +10,7 @@ module.exports = class Logger {
         if (!message || !createdBy)
             return true;
 
-        request.post({url:config["logger-url"] + '/create', 
+        request.post({url:config["logger-api"] + '/create', 
             body: JSON.stringify({
                 message : message,
                 created_by_user : createdBy
