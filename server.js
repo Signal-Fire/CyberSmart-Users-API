@@ -5,7 +5,7 @@ var express = require('express'),
     passport = require('passport'),
     compression = require('compression'),
     bodyParser = require('body-parser'),
-   
+    Portal = require('./Routes/Login'),
     Registration = require('./Routes/Registration'),
     Finder = require('./Routes/Find');
 
@@ -24,6 +24,7 @@ var passport = require('./Handlers/Passport')(passport);
 
 app.use('/register', Registration);
 app.use('/find', Finder);
+app.use('/login', Portal);
 
 app.listen(port, () => {
     console.log('Sailed through the Iron Islands, landing at ' + port);

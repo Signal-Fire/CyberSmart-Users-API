@@ -1,5 +1,6 @@
-var Users = require('../../Models/user');
-var bcrypt = require('bcryptjs');
+var Users = require('../../Models/user'),
+    bcrypt = require('bcryptjs'),
+    Tokenizer = new(require('../Token'))();
 
 module.exports = class Login {
     constructor() {
@@ -13,9 +14,12 @@ module.exports = class Login {
             }, function(err, user) {
                 if (err)
                     return reject(err);
-                bcrypt.compare(user.password, password).then(res => {
-                    console.log(res);
-                    return resolve(res);
+                    
+                bcrypt.compare(password, user.password).then(res => {
+                    if (!res)
+                        return reject("Invalid details");                    
+                        
+                    return resolve(Tokenizer.EncodeUser(res));
                 }).catch(err => {
                     return reject(err);
                 });
