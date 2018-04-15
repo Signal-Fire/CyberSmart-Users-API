@@ -12,9 +12,9 @@ module.exports = class Login {
             Users.findOne({
                 username: user                
             }, function(err, user) {
-                if (err)
-                    return reject(err);
-                    
+                if (err || user === null)
+                    return reject(err);    
+
                 bcrypt.compare(password, user.password).then(res => {
                     if (!res)
                         return reject("Invalid details");                    
