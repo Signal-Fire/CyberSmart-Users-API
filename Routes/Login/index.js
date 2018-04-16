@@ -1,7 +1,7 @@
 var route = require('express').Router();
 var Portal = new(require('../../Handlers/Login'))();
 
-route.post('/', function(req, res) {
+route.post('/', function(req, res) {    
     if (!req.body.username || !req.body.password) 
         return res.status(500).send({ "error " : "invalid parameters" });
     

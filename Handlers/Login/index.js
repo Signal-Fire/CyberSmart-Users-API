@@ -10,7 +10,7 @@ module.exports = class Login {
     Login(user, password) {
         return new Promise(function(resolve, reject) {
             Users.findOne({
-                username: user                
+                username: user.toLowerCase()                
             }, function(err, user) {
                 if (err || user === null)
                     return reject(err);    
