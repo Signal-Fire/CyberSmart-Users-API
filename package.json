@@ -27,8 +27,7 @@
     "jwt-simple": "^0.5.1",
     "mongoose": "^5.0.12",
     "passport": "^0.4.0",
-    "passport-jwt": "^4.0.0",
-    "request": "^2.85.0"
+    "passport-jwt": "^4.0.0"
   },
   "devDependencies": {
     "eslint": "^4.19.1"
