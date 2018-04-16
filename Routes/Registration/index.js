@@ -6,6 +6,7 @@ var route = require('express').Router(),
 route.post('/', function(req, res) {  
     if (!req.body)
         return res.status(400).send({ 'error' : error });
+        
     Registrar.Register(req.body).then(newUser => {
         return res.status(201).send({ 'token' : Tokenizer.EncodeUser(newUser) });
     }).catch(error => {
