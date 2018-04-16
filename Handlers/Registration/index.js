@@ -7,7 +7,7 @@ module.exports = class Registration {
         
     }
 
-    Register(user) {
+    Register(user) {        
         return new Promise(function(resolve, reject) {
             user.username = user.username.toLowerCase();
             var newUser = new User(user);
