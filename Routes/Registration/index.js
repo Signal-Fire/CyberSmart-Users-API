@@ -1,7 +1,7 @@
 /* jshint esversion: 6 */
 var route = require('express').Router(),
-    Tokenizer = new(require('../../Handlers/Token'))(),
-    Registrar = new(require('../../Handlers/Registration'))();
+    Tokenizer = require('../../Handlers/Token'),
+    Registrar = require('../../Handlers/Registration');
 
 route.post('/', function(req, res) {  
     if (!req.body)

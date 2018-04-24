@@ -2,7 +2,7 @@
 var User = require('../../Models/user'),
     bcrypt = require('bcryptjs');
 
-module.exports = class Registration {
+module.exports = new class Registration {
     constructor() {
         
     }
