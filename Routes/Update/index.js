@@ -6,7 +6,7 @@ var route = require('express').Router(),
 route.post('/user', function(req, res) {
     if (!req.headers || !req.body)
         return res.status(500).send({ "error" : "Invalid parameters" });
-
+        
     try {
         Updater.FindByJWTAndUpdate(req.headers, req.body)
         .then(updatedUser => {

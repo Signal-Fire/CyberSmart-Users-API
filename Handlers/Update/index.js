@@ -13,9 +13,14 @@ module.exports = new class Update {
         return new Promise(function(resolve, reject) {
             Tokenizer.GetTokenFrom(headers).then(jwt => {                
                 var user = Tokenizer.DecodeJWT(jwt);
+                
                 bcrypt.genSalt(10).then(salt => {
-                    bcrypt.hash(update.password, salt).then(hash => {                        
-                        update.password = (update.password === '') ? user.password : hash;
+                    bcrypt.hash(update.password, salt).then(hash => {    
+                        update.first_name = update.first_name.toLowerCase();
+                        update.last_name = update.last_name.toLowerCase();
+                        update.username = update.username.toLowerCase();
+
+                        update.password = (update.password === '') ? user.password : hash;                        
                         User.findOneAndUpdate(user, update, function(err, result) {
                             if (err || result === null)
                                 return reject("Unable to find or update user");
