@@ -14,8 +14,8 @@ module.exports = new class Update {
             Tokenizer.GetTokenFrom(headers).then(jwt => {                
                 var user = Tokenizer.DecodeJWT(jwt);
                 bcrypt.genSalt(10).then(salt => {
-                    bcrypt.hash(update.password, salt).then(hash => {
-                        update.password = hash;
+                    bcrypt.hash(update.password, salt).then(hash => {                        
+                        update.password = (update.password === '') ? user.password : hash;
                         User.findOneAndUpdate(user, update, function(err, result) {
                             if (err || result === null)
                                 return reject("Unable to find or update user");
