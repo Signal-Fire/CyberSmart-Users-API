@@ -2,7 +2,7 @@
 var jwt = require('jwt-simple'),
     config = require('../../Configuration');
 
-module.exports = class Token {
+module.exports = new class Token {
     constructor() {
 
     }

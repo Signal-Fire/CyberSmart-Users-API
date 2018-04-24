@@ -1,9 +1,9 @@
 /* jshint esversion: 6 */
 var jwt = require('jwt-simple'),
-    Tokenizer = new(require('../Token'))(),
+    Tokenizer = require('../Token'),
     User = require('../../Models/user');
 
-module.exports = class Find {
+module.exports = new class Find {
     constructor() {
 
     }
@@ -37,7 +37,7 @@ module.exports = class Find {
                         if (err || user === null)
                             return reject("Unable to find user with credentials given");
                         
-                        return resolve(Tokenizer.EncodeUser(user));                        
+                        return resolve(user);                        
                     });
                 } catch (ex) {
                     return reject(ex);

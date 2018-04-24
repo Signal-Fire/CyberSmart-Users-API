@@ -1,17 +1,17 @@
 /* jshint esversion : 6 */
-var Tokenizer = new(require('../Token'))(),
-    Finder = new(require('../../Handlers/Find'))(),
+var Finder = require('../../Handlers/Find'),
     User = require('../../Models/user'),
+    Tokenizer = require('../../Handlers/Token'),
     bcrypt = require('bcryptjs');
 
-module.exports = class Update {
+module.exports = new class Update {
     constructor() {
 
     }
 
     FindByJWTAndUpdate(headers, update) {
         return new Promise(function(resolve, reject) {
-            Tokenizer.GetTokenFrom(headers).then(jwt => {
+            Tokenizer.GetTokenFrom(headers).then(jwt => {                
                 var user = Tokenizer.DecodeJWT(jwt);
                 bcrypt.genSalt(10).then(salt => {
                     bcrypt.hash(update.password, salt).then(hash => {
@@ -19,8 +19,8 @@ module.exports = class Update {
                         User.findOneAndUpdate(user, update, function(err, result) {
                             if (err || result === null)
                                 return reject("Unable to find or update user");
-
-                            return resolve(Tokenizer.EncodeUser(update));
+                                        
+                            return resolve(update);
                         });
                     });
                 });
