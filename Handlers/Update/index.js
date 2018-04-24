@@ -1,10 +1,9 @@
 /* jshint esversion : 6 */
-var Tokenizer = new(require('../Token'))(),
-    Finder = new(require('../../Handlers/Find'))(),
+var Finder = require('../../Handlers/Find'),
     User = require('../../Models/user'),
     bcrypt = require('bcryptjs');
 
-module.exports = class Update {
+module.exports = new class Update {
     constructor() {
 
     }
@@ -20,7 +19,7 @@ module.exports = class Update {
                             if (err || result === null)
                                 return reject("Unable to find or update user");
 
-                            return resolve(Tokenizer.EncodeUser(update));
+                            return resolve(update);
                         });
                     });
                 });
