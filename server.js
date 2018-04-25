@@ -1,4 +1,3 @@
-/*jshint esversion: 6*/
 var express = require('express'),
     app = express(),
     config = require('./Configuration'),
