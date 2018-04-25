@@ -1,5 +1,6 @@
 var express = require('express'),
     app = express(),
+    helmet = require('helmet'), //Anti-HTTP vulnerability middleware
     config = require('./Configuration'),
     cors = require('cors'),
     passport = require('passport'),
@@ -10,6 +11,7 @@ var express = require('express'),
     Registration = require('./Routes/Registration'),
     Finder = require('./Routes/Find');
 
+app.use(helmet());
 app.use(cors());
 
 app.use(bodyParser.urlencoded({
