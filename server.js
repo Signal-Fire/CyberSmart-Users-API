@@ -1,6 +1,7 @@
 /*jshint esversion: 6*/
 var express = require('express'),
     app = express(),
+    config = require('./Configuration'),
     cors = require('cors'),
     passport = require('passport'),
     compression = require('compression'),
@@ -9,8 +10,6 @@ var express = require('express'),
     Updater = require('./Routes/Update'),
     Registration = require('./Routes/Registration'),
     Finder = require('./Routes/Find');
-
-const port = 8080;
 
 app.use(cors());
 
@@ -30,6 +29,6 @@ app.use('/find', Finder);
 app.use('/login', Portal);
 app.use('/update', Updater);
 
-app.listen(port, () => {
-    console.log('Sailed through the Iron Islands, landing at ' + port);
+app.listen(config.port, () => {
+    console.log('Sailed through the Iron Islands, landing at ' + config.port);
 });
