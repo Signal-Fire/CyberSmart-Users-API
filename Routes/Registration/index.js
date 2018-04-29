@@ -12,7 +12,7 @@ route.post('/', jwtAuth, function(req, res) {
         return res.status(400).send({ 'error' : error });
         
     Registrar.Register(req.headers, req.body).then(newUser => {
-        return res.status(201).send({ 'token' : Tokenizer.EncodeUser(newUser) });
+        return res.status(201).send(newUser);
     }).catch(error => {
         return res.status(400).send({ 'error' : error });
     });
