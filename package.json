@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/UniversityGroup/CyberSmart-Users-API#readme",
   "dependencies": {
+    "axios": "^0.18.0",
     "bcrypt": "^1.0.3",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.5.1",
