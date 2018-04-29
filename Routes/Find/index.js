@@ -8,6 +8,17 @@ var jwtAuth = passport.authenticate('jwt', {
     session: false
 });
 
+route.get('/all', jwtAuth, function(req, res) {
+    if (!req.headers)
+        return res.status(500).send({ error : "Invalid parameters" });
+
+    Finder.FindAllUsers(req.headers).then(users => {
+        return res.status(200).send(users);
+    }).catch(error => {
+        return res.status(404).send({ error : error });
+    })
+});
+
 route.get('/user/details', jwtAuth, function(req, res) {
     if (!req.headers)
         return res.status(500).send({ "error" : "Invalid parameters" });

@@ -29,7 +29,7 @@ var UserSchema = new Schema({
         required: true
     },
     signup_timestamp: {
-        type: String,
+        type: Date,
         default: Date.now
     }
 });
