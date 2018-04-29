@@ -8,7 +8,8 @@ var express = require('express'),
     Portal = require('./Routes/Login'),
     Updater = require('./Routes/Update'),
     Registration = require('./Routes/Registration'),
-    Finder = require('./Routes/Find');
+    Finder = require('./Routes/Find'),
+    Deleter = require('./Routes/Delete');
 
 app.use(cors());
 
@@ -27,6 +28,7 @@ app.use('/register', Registration);
 app.use('/find', Finder);
 app.use('/login', Portal);
 app.use('/update', Updater);
+app.use('/delete', Deleter);
 
 app.listen(config.port, () => {
     console.log('Sailed through the Iron Islands, landing at ' + config.port);
