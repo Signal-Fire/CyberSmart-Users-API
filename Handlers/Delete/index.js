@@ -1,5 +1,6 @@
 var User = require('../../Models/user'),
-    Tokenizer = require('../Token');
+    Tokenizer = require('../Token'),
+    Logger = require('../Logger');
 
 module.exports = new class Deleter {
     constructor() {
@@ -15,11 +16,20 @@ module.exports = new class Deleter {
                     if (err || result === null)
                         return reject("Unable to authorise user");
                     
-                    User.findByIdAndRemove(id, function(err, done) {                        
-                        if (err || done === null)
-                            return reject("Unable to delete user");
+                    if (String(result._id) === id)
+                        return reject("Unable to delete own user");
 
-                        return resolve(done);
+                    User.findByIdAndRemove(id, function(err, deletedUser) {                        
+                        if (err || deletedUser === null)
+                            return reject("Unable to delete user");
+                        
+                        Logger.CreateLog({
+                            message : 'Removed ' + deletedUser.first_name,
+                            created_by_user : result.first_name,
+                            type : "User"
+                        });
+
+                        return resolve(deletedUser);
                     });
                 })
             })
