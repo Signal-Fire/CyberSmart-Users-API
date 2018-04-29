@@ -1,7 +1,12 @@
 var route = require('express').Router(),
+    passport = require('passport'),
     Deleter = require('../../Handlers/Delete');
 
-route.post('/:id', function(req, res) {
+var jwtAuth = passport.authenticate('jwt', {
+    session: false
+});
+
+route.post('/:id', jwtAuth, function(req, res) {
     if (!req.headers)
         return res.status(500).send({ error : "Unauthorized" });
 
