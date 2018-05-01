@@ -47,4 +47,29 @@ module.exports = new class Find {
             });
         });
     }
+
+    FindAllUsers(headers) {
+        return new Promise(function(resolve, reject) {
+            Tokenizer.GetTokenFrom(headers).then(jwt => {
+                try {
+                    var query = { username : Tokenizer.DecodeJWT(jwt).username };                    
+                    User.findOne(query, function(err, user) {
+                        if (err || user === null)
+                            return reject("Invalid User");
+                        
+                        User.find({}, function(err, users) {
+                            if (err || users === null)
+                                return reject("No Users");
+                                
+                            return resolve(users);
+                        });                      
+                    });
+                } catch (ex) {
+                    return reject(ex);
+                }
+            }).catch(error => {
+                return reject(error);
+            });
+        });
+    }
 };
