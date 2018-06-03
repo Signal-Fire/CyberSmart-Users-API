@@ -7,7 +7,7 @@ module.exports = new class Find {
 
     }
 
-    FindDetailsFromJWT(headers) {
+    FindDetailsFromJWT = (headers) => {
         return new Promise((resolve, reject) => {
             Tokenizer.GetTokenFrom(headers).then(jwt => {
                 var query = { username : Tokenizer.DecodeJWT(jwt).username }
@@ -27,12 +27,12 @@ module.exports = new class Find {
         });
     }
 
-    FindByJWT(headers) {
+    FindByJWT = (headers) => {
         return new Promise((resolve, reject) => {
             Tokenizer.GetTokenFrom(headers).then(jwt => {
                 try {
                     var query = { username : Tokenizer.DecodeJWT(jwt).username };
-                    User.findOne(query, function(err, user) {
+                    User.findOne(query, (err, user) => {
                         if (err || user === null)
                             return reject("Unable to find user with credentials given");
                         
@@ -47,16 +47,16 @@ module.exports = new class Find {
         });
     }
 
-    FindAllUsers(headers) {
+    FindAllUsers = (headers) => {
         return new Promise((resolve, reject) => {
             Tokenizer.GetTokenFrom(headers).then(jwt => {
                 try {
                     var query = { username : Tokenizer.DecodeJWT(jwt).username };                    
-                    User.findOne(query, function(err, user) {
+                    User.findOne(query, (err, user) => {
                         if (err || user === null)
                             return reject("Invalid User");
                         
-                        User.find({}, function(err, users) {
+                        User.find({}, (err, users) => {
                             if (err || users === null)
                                 return reject("No Users");
                                 
