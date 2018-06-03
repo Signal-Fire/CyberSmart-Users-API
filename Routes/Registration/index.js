@@ -7,7 +7,7 @@ var jwtAuth = passport.authenticate('jwt', {
     session: false
 });
 
-route.post('/', jwtAuth, function(req, res) {  
+route.post('/', jwtAuth, (request, response) => {  
     if (!req.body)
         return res.status(400).send({ 'error' : error });
         

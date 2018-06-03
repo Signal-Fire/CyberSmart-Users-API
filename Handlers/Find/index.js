@@ -1,4 +1,3 @@
-/* jshint esversion: 6 */
 var jwt = require('jwt-simple'),
     Tokenizer = require('../Token'),
     User = require('../../Models/user');
@@ -9,7 +8,7 @@ module.exports = new class Find {
     }
 
     FindDetailsFromJWT(headers) {
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
             Tokenizer.GetTokenFrom(headers).then(jwt => {
                 var query = { username : Tokenizer.DecodeJWT(jwt).username }
                 User.findOne(query, function(err, user) {
@@ -29,7 +28,7 @@ module.exports = new class Find {
     }
 
     FindByJWT(headers) {
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
             Tokenizer.GetTokenFrom(headers).then(jwt => {
                 try {
                     var query = { username : Tokenizer.DecodeJWT(jwt).username };
@@ -49,7 +48,7 @@ module.exports = new class Find {
     }
 
     FindAllUsers(headers) {
-        return new Promise(function(resolve, reject) {
+        return new Promise((resolve, reject) => {
             Tokenizer.GetTokenFrom(headers).then(jwt => {
                 try {
                     var query = { username : Tokenizer.DecodeJWT(jwt).username };                    

@@ -18,6 +18,7 @@ module.exports = new class Registration {
                         return reject("Unable to authorise user");
                     
                     user.username = user.username.toLowerCase();
+                    
                     var newUser = new User(user);
                     
                     newUser.save(function(err, result) {
